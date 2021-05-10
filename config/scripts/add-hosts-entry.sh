@@ -7,9 +7,9 @@ source "../../.env" # load .env variables
 HOSTNAME="${1:-$DOMAIN}"
 IP="${2:-$IP}"
 
-if [ -n "$(grep $HOSTNAME /etc/hosts)" ]; then
+if [ -n "$(egrep -w "(\b|\S)${HOSTNAME}(\b|\S)" /etc/hosts)" ]; then
   echo "$HOSTNAME already exists:";
-  echo $(grep $HOSTNAME /etc/hosts);
+  echo $(egrep -w "(\b|\S)${HOSTNAME}(\b|\S)" /etc/hosts);
 else
   echo "Adding $HOSTNAME to your /etc/hosts";
   printf "%s\t%s\n" "$IP" "$HOSTNAME" | sudo tee -a /etc/hosts > /dev/null;

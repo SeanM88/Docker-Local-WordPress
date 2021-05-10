@@ -53,7 +53,7 @@ Easy local WordPress developement environment using Docker Compose.
 
 2. **Initial Project Configuration** - before actually running anything in Docker, be sure to first:
     1. **Set environment variables** - copy the `.env.example` file into a `.env` file in the project root and update the values to suit your project.
-    2. **Update `/etc/hosts` file** - add entry for custom development domain to `/etc/hosts` file (e.g. `127.0.0.1 mysite.test`) either using provided `update-hosts.sh` script or by manually editing the file directly.
+    2. **Update `/etc/hosts` file** - add entry for custom development domain to `/etc/hosts` file (e.g. `127.0.0.1 mysite.test`) either using provided `add-hosts-entry.sh` script or by manually editing the file directly.
     3. **Generate TLS/SSL certificates** - use the provided `setup-certs.sh` script to automatically create certificates needed to enforce HTTPS.
 
 3. **Start Docker** - now we're ready to actually start Docker and run our containers using Docker Compose:
