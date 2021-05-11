@@ -37,7 +37,7 @@ services:
       WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
     restart: always
     volumes:
-      - "./${APP_NAME}:/var/www/html:cached"
+      - "./site:/var/www/html:cached"
 
   # nginx
   nginx:
@@ -55,7 +55,7 @@ services:
     volumes:
       - "./config/nginx:/etc/nginx/templates"
       - "./config/certs:/etc/certs"
-      - "./${APP_NAME}:/var/www/html:cached"
+      - "./site:/var/www/html:cached"
 
 volumes:
   db-vol:
