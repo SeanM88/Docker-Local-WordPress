@@ -21,8 +21,8 @@ openssl req \
     -out "${DOMAIN}-req.pem" \
     -subj "/CN=*.${DOMAIN}"
 
-# Create an extensions file for reference in step 4
-echo "subjectAltName=DNS:*.${DOMAIN}, IP:0.0.0.0" > "${DOMAIN}-SAN.cnf"
+# Create an extensions file for reference in the following x509 signing request
+echo "subjectAltName=DNS:${DOMAIN}, DNS:www.${DOMAIN}, DNS:*.${DOMAIN}" > "${DOMAIN}-SAN.cnf"
 
 # Use CA's private key to sign our site's CSR and get back the signed certificate
 openssl x509 \
@@ -32,8 +32,8 @@ openssl x509 \
     -CAcreateserial -CAserial "${CERTS_DIR}/CA-cert.srl" \
     -in "${DOMAIN}-req.pem" \
     -out "${DOMAIN}-cert.pem" \
-    -days 3650 \
+    -days 365 \
     -extfile "${DOMAIN}-SAN.cnf"
 
 # Move newly generated cert files to certs directory
-mv -i ./*.pem ./*.cnf ./*.srl ${CERTS_DIR}/
+mv -i ./*.pem ./*.cnf ./*.srl ${CERTS_DIR}/ 2> /dev/null
