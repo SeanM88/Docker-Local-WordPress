@@ -38,6 +38,7 @@ services:
     restart: always
     volumes:
       - "./site:/var/www/html:cached"
+      - "./config/php/php.ini:/usr/local/etc/php/conf.d/php.ini"
 
   # nginx
   nginx:
