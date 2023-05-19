@@ -28,7 +28,7 @@ services:
 
   # WordPress
   wordpress:
-    image: wordpress:5-fpm
+    image: wordpress:6-fpm
     depends_on:
       - mysql
     environment:
